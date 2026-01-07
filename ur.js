@@ -42,4 +42,21 @@ async function fetchAstronauts() {
     }
 }
 
-function renderStationOptions() {
+function renderStationOptions() { const selected = stationFilter.value;
+    let filtered = astronauts;
+    if (selected !== 'all') {
+        filtered = astronauts.filter(a => a.craft === selected);
+    }
+    cardsContainer.innerHTML = '';
+    if (filtered.length === 0) {
+        cardsContainer.innerHTML = '<div class="error">Nincs megjeleníthető űrhajós ezen az állomáson.</div>';
+        return;
+    }
+    filtered.forEach(a => {
+        const card = document.createElement('div');
+        card.className = 'card';
+        card.innerHTML = `<h2>${a.name}</h2><p>Űrállomás: <strong>${a.craft}</strong></p>`;
+        cardsContainer.appendChild(card);
+    });
+}
+window.addEventListener('DOMContentLoaded', fetchAstronauts);

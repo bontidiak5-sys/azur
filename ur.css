@@ -69,3 +69,27 @@ main {
     opacity: 0;
     animation: fadeInCard 0.7s forwards;
 }
+@keyframes fadeInCard {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+.card:hover {
+    transform: scale(1.04);
+    box-shadow: 0 4px 16px rgba(59,130,246,0.3);
+}
+@media (max-width: 600px) {
+    main {
+        padding: 0.5rem;
+    }
+    .grid {
+        grid-template-columns: 1fr;
+    }
+    .card {
+        padding: 0.8rem;
+    }
+}
+@media (max-width: 900px) {
+    .grid {
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    }
+}
