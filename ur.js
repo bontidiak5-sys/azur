@@ -23,4 +23,23 @@ function hideError() {
     errorMessage.classList.add('hidden');
     errorMessage.textContent = '';
 }
+async function fetchAstronauts() {
+    showSpinner();
+    hideError();
+    try {
+        const response = await fetch(API_URL);
+        if (!response.ok) throw new Error('Hiba a hálózati válaszban!');
+        const data = await response.json();
+        astronauts = data.people;
+        astronautCount.textContent = data.number;
+        stations = [...new Set(astronauts.map(a => a.craft))];
+        renderStationOptions();
+        renderCards();
+    } catch (err) {
+        showError('Nem sikerült betölteni az adatokat. Próbáld újra később!');
+    } finally {
+        hideSpinner();
+    }
+}
 
+function renderStationOptions() {
