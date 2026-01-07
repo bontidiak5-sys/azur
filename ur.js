@@ -42,7 +42,14 @@ async function fetchAstronauts() {
     }
 }
 
-function renderStationOptions() { const selected = stationFilter.value;
+function renderStationOptions() {
+
+    stationFilter.innerHTML = '<option value="all">Összes</option>' +
+        stations.map(st => `<option value="${st}">${st}</option>`).join('');
+}
+
+function renderCards() {
+    const selected = stationFilter.value;
     let filtered = astronauts;
     if (selected !== 'all') {
         filtered = astronauts.filter(a => a.craft === selected);
@@ -59,4 +66,7 @@ function renderStationOptions() { const selected = stationFilter.value;
         cardsContainer.appendChild(card);
     });
 }
+
+stationFilter.addEventListener('change', renderCards);
+
 window.addEventListener('DOMContentLoaded', fetchAstronauts);
