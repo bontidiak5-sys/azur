@@ -4,13 +4,28 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Űrhajósok az űrben</title>
-    <link rel="stylesheet" href="ur.css">
+    <link rel="stylesheet" href="ur.css">  
 </head>
 <body>
     <header>
         <h1>Űrhajósok az űrben</h1>
     </header>
-
+    <main>
+        <section id="summary">
+            <span id="count">Űrhajósok száma: <span id="astronaut-count">0</span></span>
+        </section>
+        <section id="filter-section">
+            <label for="station-filter">Űrállomás szűrés:</label>
+            <select id="station-filter">
+                <option value="all">Összes</option>
+            </select>
+        </section>
+        <div id="spinner" class="spinner hidden"></div>
+        <div id="error-message" class="error hidden"></div>
+        <section id="cards-container" class="grid">
+            
+        </section>
+    </main>
 
     <script src="ur.js"></script>
 </body>
